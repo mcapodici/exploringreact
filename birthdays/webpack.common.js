@@ -30,5 +30,5 @@ module.exports = {
   node: {
     fs: 'empty'
   },
-  plugins: [new HtmlWebpackPlugin()]
+  plugins: [new HtmlWebpackPlugin({inject:true})]
 };
