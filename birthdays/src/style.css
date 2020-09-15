@@ -11,3 +11,7 @@ body {
   width: 50%;
   display: inline-block;
 }
+
+.react-datepicker-wrapper {
+  display: inline-block;
+}

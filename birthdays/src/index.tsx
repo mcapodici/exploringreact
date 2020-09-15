@@ -6,4 +6,7 @@ import './style.css';
 const div = document.createElement('div');
 div.id = 'root';
 document.body.appendChild(div);
-ReactDOM.render(<AddBirthdayComponent/>, div);
+ReactDOM.render(<AddBirthdayComponent
+  date={new Date()}
+  onDateChange={(date) => {}}
+/>, div);

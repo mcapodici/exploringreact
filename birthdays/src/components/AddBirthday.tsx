@@ -1,6 +1,13 @@
 import * as React from 'react'
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
-export default function AddBirthdayComponent() {
+interface IAddBirthdayProps {
+  date: Date;
+  onDateChange: (date: Date) => void
+}
+
+export default function AddBirthdayComponent(props: IAddBirthdayProps) {
   return (<div>
     <div className="inputrow">
       <label>Name of person</label>
@@ -8,7 +15,10 @@ export default function AddBirthdayComponent() {
     </div>
     <div className="inputrow">
       <label>Date of Birth</label>
-      <input></input>
+      <DatePicker
+        selected={props.date}
+        onChange={props.onDateChange}
+      />
     </div>
   </div>)
 }
