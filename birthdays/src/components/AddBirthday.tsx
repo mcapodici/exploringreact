@@ -4,7 +4,9 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 interface IAddBirthdayProps {
   date: Date;
-  onDateChange: (date: Date) => void
+  onDateChange: (date: Date) => void;
+  onSave: () => void;
+  onCancel: () => void;
 }
 
 export default function AddBirthdayComponent(props: IAddBirthdayProps) {
@@ -21,8 +23,8 @@ export default function AddBirthdayComponent(props: IAddBirthdayProps) {
       />
     </div>
     <div className="buttonrow">
-      <button>Cancel</button>&nbsp;
-      <button>Save</button>
+      <button onClick={props.onCancel}>Cancel</button>&nbsp;
+      <button onClick={props.onSave}>Save</button>
     </div>
   </div>)
 }
