@@ -3,12 +3,19 @@ import { useState } from 'react'
 import AddBirthdayComponent from './components/AddBirthday'
 
 export default function App() {
-  const [date, setDate] = useState(new Date());
+  // Workflow
   const [isAddingBirthday, setIsAddingBirthday] = useState(false);
+
+  // Adding a birthday
+  const [date, setDate] = useState(new Date());
+  const [name, setName] = useState('');
+  
 
   const screen = isAddingBirthday ? (<AddBirthdayComponent
     date={date}
+    name={name}
     onDateChange={(date) => { setDate(date) }}
+    onNameChange={(name) => { setName(name) }}
   />) : (<div></div>);
 
   const buttons = isAddingBirthday ? 
