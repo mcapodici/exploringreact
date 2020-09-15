@@ -1,0 +1,13 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.inputrow {
+  height: 2em;
+  width:100%;
+}
+
+.inputrow label {
+  width: 50%;
+  display: inline-block;
+}
