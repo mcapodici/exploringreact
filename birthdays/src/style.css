@@ -3,12 +3,17 @@ body {
 }
 
 .inputrow {
-  height: 2em;
   width:100%;
+  padding: 0.2em;
 }
 
 .inputrow label {
   width: 50%;
+  display: inline-block;
+}
+
+.inputrow input[type="text"] {
+  width: 15em;
   display: inline-block;
 }
 

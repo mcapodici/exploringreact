@@ -20,5 +20,9 @@ export default function AddBirthdayComponent(props: IAddBirthdayProps) {
         onChange={props.onDateChange}
       />
     </div>
+    <div className="buttonrow">
+      <button>Cancel</button>&nbsp;
+      <button>Save</button>
+    </div>
   </div>)
 }

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import AddBirthdayComponent from './components/AddBirthday';
 import './style.css';
 import App from './App';
 
