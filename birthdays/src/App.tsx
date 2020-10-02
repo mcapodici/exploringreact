@@ -2,13 +2,14 @@ import * as React from 'react'
 import { useState } from 'react'
 import AddBirthdayComponent from './components/AddBirthday'
 import BirthdayRecord from './types/BirthdayRecord';
+import { useLocalStorage } from './hooks/UseLocalStorage';
 
 export default function App() {
   // Workflow
   const [isAddingBirthday, setIsAddingBirthday] = useState(false);
 
   // Birthdays
-  const [bdays, setBdays] = useState<BirthdayRecord[]>([{ date: new Date(), name: 'fred' }])
+  const [bdays, setBdays] = useLocalStorage<BirthdayRecord[]>('birthdays', [])
 
   // Adding a birthday
   const [date, setDate] = useState(new Date());
@@ -30,7 +31,7 @@ export default function App() {
         {b.name}
       </td>
       <td>
-        {b.date.toDateString()}
+        {new Date(b.date).toDateString()}
       </td></tr>
     ))}
   </table></>);
@@ -40,7 +41,7 @@ export default function App() {
       <div className="control">
         <button className="button" onClick={() => setIsAddingBirthday(false)}>Cancel</button>&nbsp;
     <button className="button is-primary" onClick={() => {
-          setBdays([...bdays, { date, name }])
+          setBdays([...bdays, { date: date.getTime(), name }])
           setIsAddingBirthday(false)
         }}>Save</button>
       </div></div> : <div className="field">
