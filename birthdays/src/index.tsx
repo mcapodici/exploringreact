@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import './style.css';
+import 'bulma/css/bulma.css'
 import App from './App';
 
 const div = document.createElement('div');

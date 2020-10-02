@@ -8,7 +8,7 @@ export default function App() {
   const [isAddingBirthday, setIsAddingBirthday] = useState(false);
 
   // Birthdays
-  const [bdays, setBdays] = useState<BirthdayRecord[]>([{date:new Date(), name:'fred'}])
+  const [bdays, setBdays] = useState<BirthdayRecord[]>([{ date: new Date(), name: 'fred' }])
 
   // Adding a birthday
   const [date, setDate] = useState(new Date());
@@ -20,31 +20,35 @@ export default function App() {
     name={name}
     onDateChange={(date) => { setDate(date) }}
     onNameChange={(name) => { setName(name) }}
-  />) : (<div>
-    {bdays.map(b => (<div key={b.name}>
-      <div>
+  />) : (<><h1 className="title">Birthdays</h1><table className="table">
+    <tr>
+      <th>Name</th>
+      <th>D.O.B.</th>
+    </tr>
+    {bdays.map(b => (<tr key={b.name}>      
+        <td>
         {b.name}
-      </div>
-      <div>
+      </td>
+      <td>
         {b.date.toDateString()}
-      </div>
-    </div>))}
-  </div>);
+      </td></tr>
+    ))}
+  </table></>);
 
   const buttons = isAddingBirthday ?
-    <div className="buttonrow">
-      <button onClick={() => setIsAddingBirthday(false)}>Cancel</button>&nbsp;
-    <button onClick={() => {
-        setBdays([...bdays, { date, name }])
-        setIsAddingBirthday(false)
-      }}>Save</button>
-    </div> : <div className="buttonrow">
-      <button onClick={() => setIsAddingBirthday(true)}>Add</button>
+    <div className="field">
+      <div className="control">
+        <button className="button" onClick={() => setIsAddingBirthday(false)}>Cancel</button>&nbsp;
+    <button className="button is-primary" onClick={() => {
+          setBdays([...bdays, { date, name }])
+          setIsAddingBirthday(false)
+        }}>Save</button>
+      </div></div> : <div className="field">
+      <button className="button is-primary" onClick={() => setIsAddingBirthday(true)}>Add</button>
     </div>
 
-  return <div><div>
+  return <section className="section"><div className="container"><div>
     {screen}
-  </div><div>
-      {buttons}
-    </div></div>;
+    {buttons}
+  </div></div></section>;
 }
