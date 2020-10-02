@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { useState } from 'react'
 import AddBirthdayComponent from './components/AddBirthday'
-import BirthdayRecord from './types/BirthdayRecord';
 import { useLocalStorage } from './hooks/UseLocalStorage';
+import { BirthdayRecord, toBirthDate, fromBirthDate } from './types/BirthdayRecord';
 
 export default function App() {
   // Workflow
@@ -31,7 +31,7 @@ export default function App() {
         {b.name}
       </td>
       <td>
-        {new Date(b.date).toDateString()}
+        {fromBirthDate(b.date).toDateString()}
       </td></tr>
     ))}
   </table></>);
@@ -41,7 +41,7 @@ export default function App() {
       <div className="control">
         <button className="button" onClick={() => setIsAddingBirthday(false)}>Cancel</button>&nbsp;
     <button className="button is-primary" onClick={() => {
-          setBdays([...bdays, { date: date.getTime(), name }])
+          setBdays([...bdays, { date: toBirthDate(date), name }])
           setIsAddingBirthday(false)
         }}>Save</button>
       </div></div> : <div className="field">
