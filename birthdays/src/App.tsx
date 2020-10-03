@@ -6,6 +6,7 @@ import { BirthdayRecord, toBirthDate, fromBirthDate, nextBdayInfo } from './type
 import { SortInPlace as sortInPlace } from './util/Sort';
 
 export default function App() {
+
   // Workflow
   const [isAddingBirthday, setIsAddingBirthday] = useState(false);
 
@@ -13,11 +14,24 @@ export default function App() {
   const [bdays, setBdays] = useLocalStorage<BirthdayRecord[]>('birthdays', [])
 
   // Adding a birthday
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState<Date | undefined>(new Date());
   const [name, setName] = useState('');
 
   function deleteBirthday(deleteIndex: number) {
     setBdays(bdays.filter((v, idx) => idx !== deleteIndex));
+  }
+
+  function addBirthday() {
+    setDate(undefined);
+    setIsAddingBirthday(true);
+  }
+
+  function saveBirthday() {
+    const birthdayDate = toBirthDate(date);
+    if (birthdayDate) {
+      setBdays([...bdays, { date: birthdayDate, name }])
+    }
+    setIsAddingBirthday(false)
   }
 
   const bdaysWithInfo = bdays.map((birthday, id) => ({
@@ -41,19 +55,20 @@ export default function App() {
     </tr>
     {bdaysWithInfo.map((bid) => {
       const birthdayInfo = bid.birthdayInfo;
-      const info = nextBdayInfo(birthdayInfo.date);
+      const nextBirthdayInfo = bid.nextBirthdayInfo;
+      const date = fromBirthDate(birthdayInfo.date);
       return (<tr key={birthdayInfo.name}>
         <td>
           {birthdayInfo.name}
         </td>
         <td>
-          {fromBirthDate(birthdayInfo.date).toDateString()}
+          {date ? date.toDateString() : ''}
         </td>
         <td>
-          {info.sleeps > 100 ? 'Aaaaaages!' : info.sleeps === 0 ? 'Happy Birthday!' : info.sleeps.toString()}
+          {nextBirthdayInfo.sleeps > 100 ? 'Aaaaaages!' : nextBirthdayInfo.sleeps === 0 ? 'Happy Birthday!' : nextBirthdayInfo.sleeps.toString()}
         </td>
         <td>
-          {info.comingAge}
+          {nextBirthdayInfo.comingAge}
         </td>
         <td>
           <button className="button is-primary" onClick={() => deleteBirthday(bid.id)} >Delete</button>
@@ -66,12 +81,9 @@ export default function App() {
     <div className="field">
       <div className="control">
         <button className="button" onClick={() => setIsAddingBirthday(false)}>Cancel</button>&nbsp;
-    <button className="button is-primary" onClick={() => {
-          setBdays([...bdays, { date: toBirthDate(date), name }])
-          setIsAddingBirthday(false)
-        }}>Save</button>
+    <button className="button is-primary" onClick={() => saveBirthday()}>Save</button>
       </div></div> : <div className="field">
-      <button className="button is-primary" onClick={() => setIsAddingBirthday(true)}>Add</button>
+      <button className="button is-primary" onClick={() => addBirthday()}>Add</button>
     </div>
 
   return <section className="section"><div className="container"><div>

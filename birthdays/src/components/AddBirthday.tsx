@@ -3,7 +3,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 interface IAddBirthdayProps {
-  date: Date;
+  date: Date | undefined;
   name: string;
   onDateChange: (date: Date) => void;
   onNameChange: (name: string) => void;
