@@ -7,6 +7,12 @@ You might find them useful, or even be inspired to collaborate.
 I use Typescript for my programming (sorry I can't go back to plain JS), but I don't think it makes it that
 much harder to read.
 
+## Projects
+
+* [Birthdays](/birthdays): A a simple React App to store people's birthdays.
+
+## About
+
 For updates you can follow my React stuff:
 
 * RSS: https://www.exploringreact.com/feed
