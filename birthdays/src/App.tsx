@@ -2,7 +2,7 @@ import * as React from 'react'
 import { useState } from 'react'
 import AddBirthdayComponent from './components/AddBirthday'
 import { useLocalStorage } from './hooks/UseLocalStorage';
-import { BirthdayRecord, toBirthDate, fromBirthDate } from './types/BirthdayRecord';
+import { BirthdayRecord, toBirthDate, fromBirthDate, nextBdayInfo } from './types/BirthdayRecord';
 
 export default function App() {
   // Workflow
@@ -25,15 +25,26 @@ export default function App() {
     <tr>
       <th>Name</th>
       <th>D.O.B.</th>
+      <th>Sleeps until birthday</th>
+      <th>Coming Age</th>
     </tr>
-    {bdays.map(b => (<tr key={b.name}>      
+    {bdays.map(b => {
+      const info = nextBdayInfo(b.date);
+      return (<tr key={b.name}>
         <td>
-        {b.name}
-      </td>
-      <td>
-        {fromBirthDate(b.date).toDateString()}
-      </td></tr>
-    ))}
+          {b.name}
+        </td>
+        <td>
+          {fromBirthDate(b.date).toDateString()}
+        </td>
+        <td>
+          {info.sleeps > 100 ? 'Aaaaaages!' : info.sleeps === 0 ? 'Happy Birthday!' : info.sleeps.toString()}
+        </td>
+        <td>
+          {info.comingAge}
+        </td>
+      </tr>)
+    })}
   </table></>);
 
   const buttons = isAddingBirthday ?
