@@ -21,10 +21,8 @@ export default function App() {
     setIsAddingBirthday(true);
   }
 
-  function saveBirthday(birthdayInfo: BirthdayRecord | undefined) {
-    if (birthdayInfo) {
-      setBdays([...birthdays, birthdayInfo])
-    }
+  function saveBirthday(birthdayInfo: BirthdayRecord) {
+    setBdays([...birthdays, birthdayInfo])
     setIsAddingBirthday(false)
   }
 
