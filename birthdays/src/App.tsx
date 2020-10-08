@@ -46,7 +46,7 @@ export default function App() {
     name={name}
     onDateChange={(date) => { setDate(date) }}
     onNameChange={(name) => { setName(name) }}
-  />) : (<><h1 className="title">Birthdays</h1><table className="table">
+  />) : (<><h1 className="title">Birthdays 🎂</h1><table className="table">
     <tr>
       <th>Name</th>
       <th>D.O.B.</th>
@@ -65,7 +65,7 @@ export default function App() {
           {date ? date.toDateString() : ''}
         </td>
         <td>
-          {nextBirthdayInfo.sleeps > 100 ? 'Aaaaaages!' : nextBirthdayInfo.sleeps === 0 ? 'Happy Birthday!' : nextBirthdayInfo.sleeps.toString()}
+          {nextBirthdayInfo.sleeps > 100 ? '>100' : nextBirthdayInfo.sleeps === 0 ? 'Happy Birthday!' : nextBirthdayInfo.sleeps.toString()}
         </td>
         <td>
           {nextBirthdayInfo.comingAge}
