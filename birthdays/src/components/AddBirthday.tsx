@@ -1,7 +1,7 @@
 import * as React from 'react'
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { BirthdayRecord, toBirthDate } from '../types/BirthdayRecord';
+import { BirthdayRecord, toBirthDate } from 'types/BirthdayRecord';
 import { useState } from 'react';
 
 interface IAddBirthdayProps {

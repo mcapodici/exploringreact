@@ -1,5 +1,3 @@
-import { BADSTR } from "dns";
-
 export interface BirthdayRecord {
   name: string,
   date: BirthDate
