@@ -22,15 +22,17 @@ export default function App() {
   }
 
   function addBirthday() {
-    setDate(undefined);
     setIsAddingBirthday(true);
   }
 
-  function saveBirthday() {
-    const birthdayDate = toBirthDate(date);
-    if (birthdayDate) {
-      setBdays([...bdays, { date: birthdayDate, name }])
+  function saveBirthday(birthdayInfo: BirthdayRecord | undefined) {
+    if (birthdayInfo) {
+      setBdays([...bdays, birthdayInfo])
     }
+    setIsAddingBirthday(false)
+  }
+
+  function cancelAddBirthday() {
     setIsAddingBirthday(false)
   }
 
@@ -42,10 +44,8 @@ export default function App() {
   sortInPlace(bdaysWithInfo, x => x.nextBirthdayInfo.sleeps);
 
   const screen = isAddingBirthday ? (<AddBirthdayComponent
-    date={date}
-    name={name}
-    onDateChange={(date) => { setDate(date) }}
-    onNameChange={(name) => { setName(name) }}
+    onCancel={() => { cancelAddBirthday(); }}
+    onSave = {birthdayInfo => saveBirthday(birthdayInfo)}
   />) : (<><h1 className="title">Birthdays 🎂</h1><table className="table">
     <tr>
       <th>Name</th>
@@ -78,11 +78,7 @@ export default function App() {
   </table></>);
 
   const buttons = isAddingBirthday ?
-    <div className="field">
-      <div className="control">
-        <button className="button" onClick={() => setIsAddingBirthday(false)}>Cancel</button>&nbsp;
-    <button className="button is-primary" onClick={() => saveBirthday()}>Save</button>
-      </div></div> : <div className="field">
+    <div></div> : <div className="field">
       <button className="button is-primary" onClick={() => addBirthday()}>Add</button>
     </div>
 

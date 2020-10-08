@@ -11,12 +11,12 @@ export interface BirthDate {
   day: number
 }
 
-export function toBirthDate(x: Date | undefined) {
-  return x ? { year: x.getFullYear(), month: x.getMonth() + 1, day: x.getDate() } : undefined;
+export function toBirthDate(x: Date) {
+  return { year: x.getFullYear(), month: x.getMonth() + 1, day: x.getDate() };
 }
 
-export function fromBirthDate(x: BirthDate | undefined) {
-  return x ? new Date(x.year, x.month - 1, x.day) : undefined;
+export function fromBirthDate(x: BirthDate) {
+  return new Date(x.year, x.month - 1, x.day);
 }
 
 export function nextBdayInfo(x: BirthDate) {
