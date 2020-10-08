@@ -12,12 +12,14 @@ interface IAddBirthdayProps {
 export default function AddBirthdayComponent(props: IAddBirthdayProps) {
   const [date, setDate] = useState<Date | null>(new Date());
   const [name, setName] = useState('');
+  const [showValidation, setShowValidation] = useState(false);
 
   function onSave() {
     const birthDate = date ? toBirthDate(date) : undefined;
     if (birthDate && name) {
       props.onSave({ name, date: birthDate });
     }
+    setShowValidation(true);
   }
 
   function dateIsValid() {
@@ -37,13 +39,13 @@ export default function AddBirthdayComponent(props: IAddBirthdayProps) {
     <div className="field">
       <div className="control">
         <label className="label">Name of person</label>
-        <input className={`input ${nameIsValid() ? '' : 'is-danger'}`} onChange={(evt) => setName(evt.target.value)} type="text" value={name} ></input>
+        <input className={`input ${showValidation && !nameIsValid() ? 'is-danger' : ''}`} onChange={(evt) => setName(evt.target.value)} type="text" value={name} ></input>
       </div>
     </div>
     <div className="field">
       <div className="control">
         <label className="label">Date of Birth</label>
-        <DatePicker className={`input ${dateIsValid() ? '' : 'is-danger'}`}
+        <DatePicker className={`input ${showValidation && !dateIsValid() ? 'is-danger' : ''}`}
           selected={date}
           onChange={(date) => setDate(date as Date | null)}
         />
@@ -52,7 +54,7 @@ export default function AddBirthdayComponent(props: IAddBirthdayProps) {
     <div className="field">
       <div className="control">
         <button className="button" onClick={() => props.onCancel()}>Cancel</button>&nbsp;
-        <button className="button is-primary" disabled={!formIsValid()} onClick={() => onSave()}>Save</button>
+        <button className="button is-primary" onClick={() => onSave()}>Save</button>
       </div>
     </div>
   </>)
