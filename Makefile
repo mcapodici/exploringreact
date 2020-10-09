@@ -1,2 +1,2 @@
 netlify:
-	cd birthdays && npm run webpack-prod
+	cd birthdays && npm i && npm run webpack-prod
