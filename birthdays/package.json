@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "start \"\" live-server dist --port=80 --watch && npm run webpack-dev-watch",
+    "start": "start \"\" live-server ../dist/birthdays --port=80 --watch && npm run webpack-dev-watch",
     "webpack-dev-watch": "webpack --watch --config webpack.dev.js",
     "webpack-dev": "webpack --config webpack.dev.js",
     "webpack-prod": "webpack --config webpack.prod.js",
